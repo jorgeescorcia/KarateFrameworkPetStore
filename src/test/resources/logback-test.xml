@@ -1,0 +1,23 @@
+<configuration>
+
+    <!-- Consola -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %cyan([%d{HH:mm:ss}]) %highlight(%-5level) %green(%logger{36}) - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- Nivel por defecto -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- Logs de Karate -->
+    <logger name="com.intuit.karate" level="DEBUG"/>
+    <logger name="com.intuit.karate.core" level="DEBUG"/>
+    <logger name="com.intuit.karate.http" level="DEBUG"/>
+    <logger name="com.intuit.karate.ScenarioActions" level="DEBUG"/>
+
+</configuration>
