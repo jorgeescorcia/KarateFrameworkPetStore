@@ -1,9 +1,15 @@
 Feature: add new pet the store
-
+  Background:
+    * url "https://petstore.swagger.io/v2"
+    * path 'pet'
+    * def newPet = read('classpath:users/post/newPet.json')
 
 
   Scenario: add pet the store
-    Given url "https://petstore.swagger.io/v2/pet"
-    And request {"id": 0,"category": {"id": 0,"name": "Rocco"},"name": "doggie","photoUrls": ["string"],"tags": [{"id": 110,"name": "string"}],"status": "available"}
+    Given request newPet
     When method post
     Then status 200
+    And match response.name == newPet.name
+
+
+

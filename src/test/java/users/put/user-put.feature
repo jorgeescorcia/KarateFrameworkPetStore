@@ -1,10 +1,14 @@
-Feature: put a users
-
+Feature: update a users
+  Background:
+    * url "https://petstore.swagger.io/v2"
+    * path 'pet'
+    * def updatePet = read('updatePet.json')
 
 
 
   Scenario: update pet the store
-    Given url "https://petstore.swagger.io/v2/pet"
-    And request {"id": 0,"category": {"id": 0,"name": "Rocco"},"name": "doggie","photoUrls": ["string"],"tags": [{"id": 110,"name": "string"}],"status": "available"}
+    Given request updatePet
     When method put
     Then status 200
+    And match response.name == updatePet.name
+    And match response.status == updatePet.status
